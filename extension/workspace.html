@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iconpack · 图标库批量下载</title>
+  <link rel="icon" href="icons/32.png">
+  <link rel="stylesheet" href="workspace.css">
+  <link rel="stylesheet" href="compact.css">
+</head>
+<body>
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13 4-4m-6 6-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 2 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0" transform="translate(1 1)"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5M6 6a8 8 0 0 1 13 2M5 16a8 8 0 0 0 13 2"/></symbol>
+  </defs></svg>
+  <aside class="sidebar">
+    <a class="brand" href="workspace.html" aria-label="Iconpack 首页"><span class="brand-mark"><svg><use href="#i-grid"/></svg></span><span>Iconpack<span class="brand-dot">.</span></span></a>
+    <div class="sidebar-heading">你的图标，整库带走。</div>
+    <div class="nav-item"><svg><use href="#i-grid"/></svg>图标库下载<span>01</span></div>
+    <details id="source-details" class="panel-details" open><summary><span>导入图标库</span><span class="detail-hint">链接 / 库 ID</span></summary>
+    <form id="source-form" class="source-form">
+      <label class="eyebrow" for="source-input">导入图标库</label>
+      <p>粘贴 iconfont 图标库链接或库 ID</p>
+      <textarea id="source-input" rows="3" spellcheck="false" placeholder="https://www.iconfont.cn/&#10;collections/detail?cid=…" required aria-describedby="source-help"></textarea>
+      <span id="source-help" class="field-help">支持该站所有可访问的图标库</span>
+      <button id="load-button" class="button primary load-button" type="submit">读取图标库<svg><use href="#i-arrow"/></svg></button>
+    </form>
+    </details>
+    <details id="export-details" class="panel-details export-details"><summary><span>导出设置</span><span id="settings-preview" class="detail-hint">SVG · 128 px</span></summary>
+    <section class="settings" aria-labelledby="settings-title">
+      <h2 id="settings-title" class="eyebrow">导出设置</h2>
+      <label class="control-label" id="format-label">文件格式</label>
+      <div class="format-switch" role="group" aria-labelledby="format-label">
+        <button type="button" data-format="svg" class="active" aria-pressed="true">SVG<span>矢量 · 无损缩放</span></button>
+        <button type="button" data-format="png" aria-pressed="false">PNG<span>图片 · 透明背景</span></button>
+      </div>
+      <div class="setting-row"><label for="size">导出尺寸</label><select id="size"><option value="32">32 × 32</option><option value="64">64 × 64</option><option value="128" selected>128 × 128</option><option value="256">256 × 256</option><option value="512">512 × 512</option><option value="1024">1024 × 1024</option></select></div>
+      <p class="setting-note" id="size-note">SVG 保持矢量，尺寸可继续缩放</p>
+      <div class="setting-row"><label for="color-mode">图标颜色</label><select id="color-mode"><option value="original">保留原色</option><option value="custom">自定义单色</option></select></div>
+      <label class="color-setting" id="color-setting" hidden><span>单色颜色</span><span class="color-value"><span id="color-hex">#3d63e9</span><input type="color" id="color" value="#3d63e9" aria-label="选择图标颜色"></span></label>
+      <div class="archive-setting"><label for="archive-name">压缩包名称</label><div class="archive-input"><input id="archive-name" type="text" maxlength="100" autocomplete="off" placeholder="自动使用图标库名称" aria-describedby="archive-help"><span>.zip</span></div><p id="archive-help">留空自动命名，文件名中的非法字符会自动替换。</p></div>
+    </section>
+    </details>
+    <div class="sidebar-bottom"><span class="local-dot"></span>本地打包，无需上传<span class="version">v1.1</span></div>
+  </aside>
+  <main>
+    <header class="topbar"><span>工作空间 <span class="breadcrumb">/</span> 图标库下载</span><a href="https://www.iconfont.cn/collections" target="_blank" rel="noopener noreferrer">浏览 iconfont<svg><use href="#i-external"/></svg></a></header>
+    <div class="main-content">
+      <section class="page-intro"><div><div class="eyebrow intro-eyebrow">COLLECT. SELECT. DOWNLOAD.</div><h1>好图标，一次打包<span>。</span></h1><p>从整个图标库，到你需要的每一个。</p></div><div class="intro-badge"><svg><use href="#i-download"/></svg><span>批量导出<small>SVG / PNG → ZIP</small></span></div></section>
+      <section id="collection-card" class="collection-card" hidden aria-label="当前图标库">
+        <div class="collection-avatar"><svg><use href="#i-grid"/></svg></div>
+        <div class="collection-info"><div class="collection-title-row"><h2 id="collection-title"></h2><span class="tag">ICONFONT</span></div><p id="collection-meta"></p></div>
+        <a id="collection-source" class="icon-button" target="_blank" rel="noopener noreferrer" title="查看原图标库" aria-label="查看原图标库"><svg><use href="#i-external"/></svg></a>
+        <button id="refresh" class="icon-button" title="重新读取图标库" aria-label="重新读取图标库"><svg><use href="#i-refresh"/></svg></button>
+      </section>
+      <div id="notice" class="notice" hidden role="status"><span id="notice-text"></span><button id="retry-failed" class="text-button" hidden>选中失败项重试</button><button id="notice-close" aria-label="关闭提示">×</button></div>
+      <div class="library-toolbar" id="library-toolbar" hidden>
+        <label class="search"><svg><use href="#i-search"/></svg><input id="search" type="search" placeholder="搜索图标名称或 ID…" autocomplete="off" aria-label="搜索图标名称或 ID"><kbd>/</kbd></label>
+        <label class="selected-filter"><input type="checkbox" id="selected-only">只看已选 <span id="selected-filter-count">0</span></label>
+      </div>
+      <div class="selection-toolbar" id="selection-toolbar" hidden><label class="select-all"><input type="checkbox" id="select-all"><span id="select-all-label">全选当前结果</span></label><span id="results-count"></span><button id="invert" class="text-button">反选结果</button><button id="clear" class="text-button">清空选择</button></div>
+      <section id="empty-state" class="empty-state"><div class="empty-art"><span><svg><use href="#i-grid"/></svg></span><i class="art-small">✦</i><i class="art-dot"></i></div><h2>从一个图标库开始</h2><p>粘贴图标库链接，即可预览并批量下载。<br>也可以在 iconfont 图标库页面点击「批量下载」。</p><button id="example" class="button secondary">试试手机淘宝图标库<svg><use href="#i-arrow"/></svg></button><div class="empty-features"><span>01 读取整库</span><i>→</i><span>02 自由选择</span><i>→</i><span>03 一键打包</span></div></section>
+      <section id="loading-state" class="empty-state" hidden aria-live="polite"><div class="spinner"></div><h2>正在读取图标库</h2><p>获取完整图标数据，请稍候…</p><button id="cancel-load" class="text-button">取消读取</button></section>
+      <div id="icon-grid" class="icon-grid" aria-label="图标列表"></div>
+      <section id="no-results" class="no-results" hidden><svg><use href="#i-search"/></svg><h2>没有找到匹配的图标</h2><p>试试其他关键词，或关闭「只看已选」。</p><button id="reset-search" class="text-button">重置筛选</button></section>
+      <p id="license-note" class="license-note" hidden>图标版权归原作者所有。请在原图标库确认使用授权，下载包内附来源信息。</p>
+    </div>
+    <footer class="download-bar">
+      <div class="download-summary"><span id="selection-number">0</span><div>个图标已选<p id="export-summary">SVG · 128 px · 保留原色</p></div></div>
+      <div class="export-progress" id="export-progress" hidden><div><span id="progress-label">准备导出…</span><button id="cancel-export" class="text-button">取消</button></div><progress id="progress" value="0" max="100" aria-label="导出进度"></progress></div>
+      <span class="zip-hint" id="zip-hint">一个 ZIP，全部带走</span>
+      <button id="download" class="button primary download-button" disabled><svg><use href="#i-download"/></svg><span id="download-label">下载所选图标</span><span class="key-hint">ZIP</span></button>
+    </footer>
+  </main>
+  <script type="module" src="workspace.js"></script>
+</body>
+</html>
