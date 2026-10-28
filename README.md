@@ -4,6 +4,7 @@
 
 <p align="center">在一个小窗口里选图标、调参数，把整库打包带走。</p>
 <p align="center">Chrome Manifest V3 · SVG / PNG · 本地 ZIP · MIT License</p>
+<p align="center"><a href="https://github.com/yidianier/iconfonts-downloads-tool/releases/latest">下载最新版</a> · <a href="#安装与使用">安装与使用</a> · <a href="https://github.com/yidianier/iconfonts-downloads-tool/issues">反馈问题</a></p>
 
 Iconpack 是一个开源 Chrome 扩展，用于批量下载 **iconfont 任意可访问图标库**。自动识别当前库，也支持粘贴库链接或输入数字库 ID。无需安装 Node.js，无需运行服务，加载扩展即可使用。
 
@@ -36,7 +37,7 @@ Iconpack 是一个开源 Chrome 扩展，用于批量下载 **iconfont 任意可
 
 ### 1. 获取插件
 
-推荐在本仓库的 **Releases** 页面下载 `iconpack-1.1.0.zip` 并解压。
+推荐在 [Releases](https://github.com/yidianier/iconfonts-downloads-tool/releases/latest) 页面下载 `iconpack-1.1.0.zip` 并解压。
 
 也可以点击 **Code → Download ZIP** 下载整个项目，或克隆源码。源码中的 `extension/` 就是可直接加载的插件文件夹，不需要构建或安装依赖。
 
